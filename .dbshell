@@ -1,0 +1,6 @@
+show dbs
+use campusselectionsystem
+show collections
+db.sections.drop()
+show collectiona
+show collections
