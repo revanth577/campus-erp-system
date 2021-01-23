@@ -248,7 +248,23 @@ exports.deleteNotes=async(req,res)=>{
 }
 
 
-
+exports.addSubject=async(req,res)=>{
+    
+    
+    try{
+        console.log(req.body);
+        
+        
+    }
+    catch(err)
+    {
+         res.status(400).json({
+            status:"failure",
+            error:err.message
+        }) 
+        
+    }
+}
 
 
 

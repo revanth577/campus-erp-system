@@ -114,3 +114,10 @@ source <(egrep -v 'declare -x TMUX|declare -.?r ' /home/ubuntu/.tmux/sessions-ol
 mongo
 npm start
 clear
+git add .
+git commit -m "second"
+git push -u origin master
+clear
+source <(egrep -v 'declare -x TMUX|declare -.?r ' /home/ubuntu/.tmux/sessions-old/zq1uy34ojpf/vars.txt) && cd ${PWD}
+source <(egrep -v 'declare -x TMUX|declare -.?r ' /home/ubuntu/.tmux/sessions-old/9ku5icbfkrq/vars.txt) && cd ${PWD}
+npm start

@@ -1,7 +1,7 @@
 const express=require("express");
 const multer=require("multer");
 const router=express.Router();
-const {signup,login,addNotes,showteacherNotes,deleteNotes}=require("../Controllers/teacherControllers.js")
+const {signup,login,addNotes,showteacherNotes,deleteNotes,addSubject}=require("../Controllers/teacherControllers.js")
 const {isProtect,isTeacher}=require("../Controllers/Auth.js")
 const path=require("path");
 
@@ -56,6 +56,18 @@ router.route("/login").post(login)
 router.route("/addNotes").post(isProtect,isTeacher,uploadStorage.single("file"),addNotes)
 router.route("/showteacherNotes").get(isProtect,isTeacher,showteacherNotes)
 router.route("/deleteNotes/:id").delete(isProtect,isTeacher,deleteNotes)
+
+
+
+/*
+
+Subject ROutes
+
+*/
+
+
+
+router.route("/addSubject").post(isProtect,isTeacher,addSubject)
 
 router.get("/logout",(req,res)=>{
     
