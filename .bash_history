@@ -93,3 +93,24 @@ git push
 git push origin master
 clear
 git init
+git add .
+git sttaus
+git status
+git commit -m "first"
+git remote add origin https://github.com/revanth577/campus-erp-system.git
+git push origin master
+clear
+mongo
+npm start
+clear
+npm start
+clear
+npm start
+npm i date-and-time
+clear
+source <(egrep -v 'declare -x TMUX|declare -.?r ' /home/ubuntu/.tmux/sessions-old/yp3yk8rydwq/vars.txt) && cd ${PWD}
+source <(egrep -v 'declare -x TMUX|declare -.?r ' /home/ubuntu/.tmux/sessions-old/9ku5icbfkrq/vars.txt) && cd ${PWD}
+source <(egrep -v 'declare -x TMUX|declare -.?r ' /home/ubuntu/.tmux/sessions-old/zq1uy34ojpf/vars.txt) && cd ${PWD}
+mongo
+npm start
+clear

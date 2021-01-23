@@ -4,3 +4,18 @@ show collections
 db.sections.drop()
 show collectiona
 show collections
+show dbs
+use campusselectionsystem
+show collections
+db.hods.drop()
+db.sections.drop()
+show collections
+db.sections.drop()
+db.hods.drop()
+show collections
+db.hods.drop()
+show collections
+db.teachers.drop()
+show collections
+db.teachers.drop()
+show collections

@@ -19,7 +19,11 @@ const notesSchema=new mongoose.Schema({
     year:{
         type:Number
     },
-    Date:Date.now(),
+    uploadedAt:{
+        type:Date,
+        default:Date.now()
+    },
+    
     section:{
         
          type: mongoose.Schema.Types.ObjectId,

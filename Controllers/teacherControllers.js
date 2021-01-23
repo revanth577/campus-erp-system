@@ -3,6 +3,9 @@ const jwt=require("jsonwebtoken")
 const principalModel=require("../models/prinicipalModel.js")
 const hodModel=require("../models/hodModel.js")
 const teacherModel=require("../models/teacherModel.js")
+const sectionModel=require("../models/sectionModel.js")
+const notesModel=require("../models/notesModel.js")
+const date = require('date-and-time');
 
 const {SECRET_KEY}=require("../secrets.js")
 
@@ -124,12 +127,51 @@ exports.login=async(req,res)=>{
 }
 
 
-exports.addNotes=(req,res)=>{
+exports.addNotes=async(req,res)=>{
     
     
     try{
+        console.log("file inside")
+        const path="/student/notes/"+req.file.filename;
+        const data=req.body;
+        const now = new Date();
         
-        console.log(req.file);
+        const teacher=req.teacher;
+        const getAllSections=await sectionModel.find({department:teacher.department,year:data.year})
+        let secId;
+        
+        
+        for(key in getAllSections)
+        {
+            if(getAllSections[key].name==data.section_name)
+            {
+                secId=getAllSections[key]._id;
+                
+            }
+        }
+        
+        if(secId)
+        {
+            const notes=new notesModel(data);
+            notes.section=secId;
+            notes.filename=path;
+            notes.teacher=teacher._id;
+         
+            await notes.save();
+            
+              res.status(201).json({
+           status:"success",
+           data:notes
+           
+             })
+            
+            
+        }
+        else{
+            throw new Error("No section Found to Add Notes")
+        }
+        
+        
         
     }
     catch(err)
@@ -142,6 +184,70 @@ exports.addNotes=(req,res)=>{
     }
     
 }
+
+
+exports.showteacherNotes=async(req,res)=>
+{
+    
+    try{
+        
+        const teacherId=req.teacher._id;
+        
+        
+        const getAllNotes=await notesModel.find({teacher:teacherId});
+        
+        
+        
+        res.status(201).json({
+           status:"success",
+           data:getAllNotes
+           
+             })
+        
+        
+    }
+    catch(err)
+    {
+        
+        res.status(400).json({
+            status:"failure",
+            error:err.message
+        })
+    }
+    
+}
+
+
+exports.deleteNotes=async(req,res)=>{
+    
+    
+    try{
+        
+        const notesId=req.params.id;
+        console.log(notesId)
+        await notesModel.deleteOne({_id:notesId});
+        
+        res.status(201).json({
+           status:"success",
+           data:"notes deleted Successfully"
+           
+             })
+        
+        
+    }
+    catch(err)
+    {
+        
+       res.status(400).json({
+            status:"failure",
+            error:err.message
+        }) 
+        
+    }
+    
+}
+
+
 
 
 
