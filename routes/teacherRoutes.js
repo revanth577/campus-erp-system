@@ -1,8 +1,10 @@
 const express=require("express");
 const multer=require("multer");
 const router=express.Router();
-const {signup,login,addNotes,showteacherNotes,deleteNotes,addSubject}=require("../Controllers/teacherControllers.js")
+const {signup,login,addNotes,showteacherNotes,deleteNotes,addSubject,getAllSubjects,deleteSubject
+,addMeeting,getAllMeetingsByTeacher,deleteteacherLink,disactiveStudents,getAllStudentsByDepartment,makeStudentActive,deleteStudent}=require("../Controllers/teacherControllers.js")
 const {isProtect,isTeacher}=require("../Controllers/Auth.js")
+
 const path=require("path");
 
 /*file Uploading
@@ -58,7 +60,6 @@ router.route("/showteacherNotes").get(isProtect,isTeacher,showteacherNotes)
 router.route("/deleteNotes/:id").delete(isProtect,isTeacher,deleteNotes)
 
 
-
 /*
 
 Subject ROutes
@@ -68,6 +69,34 @@ Subject ROutes
 
 
 router.route("/addSubject").post(isProtect,isTeacher,addSubject)
+router.route("/getAllSubjects").get(isProtect,isTeacher,getAllSubjects)
+router.route("/deleteSubject/:id").delete(isProtect,isTeacher,deleteSubject)
+
+/*
+
+Meeting Routes
+
+
+*/
+
+router.route("/addMeeting/:secId/:mId").post(isProtect,isTeacher,addMeeting)
+router.route("/getAllMeetingsByTeacher").get(isProtect,isTeacher,getAllMeetingsByTeacher)
+
+router.route("/deleteteacherLink/:id").delete(isProtect,isTeacher,deleteteacherLink)
+
+
+/*
+
+                Student Routes
+
+*/
+
+
+router.route("/getAllDisactiveStudents").get(isProtect,isTeacher,disactiveStudents)
+router.route("/getAllStudentsByDepartment").get(isProtect,isTeacher,getAllStudentsByDepartment)
+router.route("/makeStudentActive/:id").get(isProtect,isTeacher,makeStudentActive)
+router.route("/deleteStudent/:id").delete(isProtect,isTeacher,deleteStudent)
+
 
 router.get("/logout",(req,res)=>{
     

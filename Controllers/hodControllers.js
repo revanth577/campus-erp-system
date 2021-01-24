@@ -19,6 +19,11 @@ exports.signup=async(req,res)=>{
         {
             data.role=undefined;
         }
+        const emailExists=await hodModel.findOne({email:data.email})
+        if(emailExists)
+        {
+            throw new Error("email already exists")
+        }
         
         const collegeId=data.collegeId;
         
@@ -26,7 +31,7 @@ exports.signup=async(req,res)=>{
         data.collegeId=undefined;
         if(collegeFound&&data.password==data.confirmPassword)
         {
-            const departmentFound=await hodModel.findOne({department:data.department});
+            const departmentFound=await hodModel.findOne({department:data.department,collegeId:collegeFound._id});
             
             if(departmentFound)
             {

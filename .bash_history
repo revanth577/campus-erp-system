@@ -121,3 +121,14 @@ clear
 source <(egrep -v 'declare -x TMUX|declare -.?r ' /home/ubuntu/.tmux/sessions-old/zq1uy34ojpf/vars.txt) && cd ${PWD}
 source <(egrep -v 'declare -x TMUX|declare -.?r ' /home/ubuntu/.tmux/sessions-old/9ku5icbfkrq/vars.txt) && cd ${PWD}
 npm start
+git add .
+git commit -m "third"
+git push -u origin master
+source <(egrep -v 'declare -x TMUX|declare -.?r ' /home/ubuntu/.tmux/sessions-old/oxdyvybnuc/vars.txt) && cd ${PWD}
+source <(egrep -v 'declare -x TMUX|declare -.?r ' /home/ubuntu/.tmux/sessions-old/9ku5icbfkrq/vars.txt) && cd ${PWD}
+source <(egrep -v 'declare -x TMUX|declare -.?r ' /home/ubuntu/.tmux/sessions-old/zq1uy34ojpf/vars.txt) && cd ${PWD}
+clear
+npm start
+clear
+npm start
+clear

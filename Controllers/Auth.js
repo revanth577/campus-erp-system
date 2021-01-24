@@ -3,6 +3,7 @@ const {SECRET_KEY}=require("../secrets.js")
 const principalModel=require("../models/prinicipalModel.js")
 const hodModel=require("../models/hodModel.js")
 const teacherModel=require("../models/teacherModel.js")
+const studentModel=require("../models/studentModel.js")
 
 exports.isProtect=async (req,res,next)=>{
     
@@ -88,7 +89,7 @@ exports.isHod=async(req,res,next)=>{
             next();
         }
         else{
-            throw new Error("Your Not Authorized to Access Principal Scope")
+            throw new Error("Your Not Authorized to Access Hod Scope")
         }
         
         
@@ -118,7 +119,7 @@ exports.isTeacher=async(req,res,next)=>{
             next();
         }
         else{
-            throw new Error("Your Not Authorized to Access Principal Scope")
+            throw new Error("Your Not Authorized to Access Teacher   Scope")
         }
         
         
@@ -138,4 +139,33 @@ exports.isTeacher=async(req,res,next)=>{
 }
 
 
+
+exports.isStudent=async(req,res,next)=>{
+    
+     try{
+        
+        const id=req.id;
+
+         const studentFound=await studentModel.findById(id);
+        if(studentFound)
+        {
+            req.student=studentFound;
+            
+            next();
+        }
+        else{
+            throw new Error("Your Not Authorized to Access Student Scope")
+        }
+        
+        
+    }
+    catch(err)
+    {
+        res.status(400).json({
+            status:"failure",
+            error:err.message
+        })
+        
+    }
+}
 

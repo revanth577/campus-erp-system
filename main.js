@@ -41,6 +41,19 @@ app.use("/api/teacher",teacherRoutes)
 
 
 
+
+/*
+
+************************************Student Routes************************************
+
+
+*/
+
+const studentRoutes=require("./routes/studentRoutes.js")      
+
+app.use("/api/student",studentRoutes);
+
+
 app.listen(3000,()=>{
 
 console.log("server is running at",3000)
