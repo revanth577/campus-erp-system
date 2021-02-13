@@ -27,7 +27,7 @@ const prinicipalSchema=new mongoose.Schema({
     },
    role:{
        type:String,
-       default:"principal"
+       default:"principle"
    },
     
 },

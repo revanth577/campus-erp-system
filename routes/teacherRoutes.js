@@ -2,7 +2,7 @@ const express=require("express");
 const multer=require("multer");
 const router=express.Router();
 const {signup,login,addNotes,showteacherNotes,deleteNotes,addSubject,getAllSubjects,deleteSubject
-,addMeeting,getAllMeetingsByTeacher,deleteteacherLink,disactiveStudents,getAllStudentsByDepartment,makeStudentActive,deleteStudent}=require("../Controllers/teacherControllers.js")
+,addMeeting,getAllMeetingsByTeacher,deleteteacherLink,disactiveStudents,getAllStudentsByDepartment,makeStudentActive,deleteStudent,getSectionByTeacher}=require("../Controllers/teacherControllers.js")
 const {isProtect,isTeacher}=require("../Controllers/Auth.js")
 
 const path=require("path");
@@ -58,8 +58,10 @@ router.route("/login").post(login)
 router.route("/addNotes").post(isProtect,isTeacher,uploadStorage.single("file"),addNotes)
 router.route("/showteacherNotes").get(isProtect,isTeacher,showteacherNotes)
 router.route("/deleteNotes/:id").delete(isProtect,isTeacher,deleteNotes)
+router.route("/getSectionByTeacher/:id").get(isProtect,isTeacher,getSectionByTeacher)
 
 
+//getSectionByTeacher
 /*
 
 Subject ROutes

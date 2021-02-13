@@ -1,7 +1,7 @@
 const express=require("express");
 
 const router=express.Router();
-const {signup,login,addSection,getSections,deleteSection,disActiveAccounts,getAllTeachers,maketeacherActive}=require("../Controllers/hodControllers.js")
+const {signup,login,addSection,getSections,deleteSection,disActiveAccounts,getAllTeachers,maketeacherActive,deleteTeacher}=require("../Controllers/hodControllers.js")
 const {isProtect,isHod}=require("../Controllers/Auth.js")
 
 
@@ -17,7 +17,7 @@ router.route("/getAllTeachers").get(isProtect,isHod,getAllTeachers)
 router.route("/maketeacherActive/:id").patch(isProtect,isHod,maketeacherActive)
 
 
-
+router.route("/deleteTeacher/:id").delete(isProtect,isHod,deleteTeacher)
 
 
 

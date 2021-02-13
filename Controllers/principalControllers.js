@@ -28,7 +28,7 @@ exports.signup=async(req,res)=>{
    }
     catch(err)
     {
-        res.status(400).json({
+        res.status(200).json({
             status:"failure",
             error:err.message
         })
@@ -61,19 +61,16 @@ exports.login=async(req,res)=>{
            data:principal
        })
             
-            
         }
         else{
             
             throw new Error("No Collge Found");
         }
         
-        
-        
     }
     catch(err)
     {
-        res.status(400).json({
+        res.status(200).json({
             status:"failure",
             error:err.message
         })
@@ -135,7 +132,7 @@ exports.getDisActiveHods=async (req,res)=>{
     
     catch(err)
     {
-        res.status(400).json({
+        res.status(200).json({
             status:"failure",
             error:err.message
         })
@@ -208,7 +205,7 @@ exports.makeHodActive=async(req,res)=>{
     
     catch(err)
     {
-        res.status(400).json({
+        res.status(200).json({
             status:"failure",
             error:err.message
         })

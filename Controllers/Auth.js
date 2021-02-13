@@ -32,7 +32,7 @@ exports.isProtect=async (req,res,next)=>{
     
     catch(err)
     {
-        res.status(400).json({
+        res.status(200).json({
             status:"failure",
             error:err.message
         })
@@ -50,7 +50,7 @@ exports.isPrincipal=async(req,res,next)=>{
         
         
         const isPrincipal=await principalModel.findById(id);
-        if(isPrincipal && isPrincipal.role=="principal")
+        if(isPrincipal && isPrincipal.role=="principle")
         {
             req.principal=isPrincipal;
             next();
@@ -63,7 +63,7 @@ exports.isPrincipal=async(req,res,next)=>{
     }
     catch(err)
     {
-        res.status(400).json({
+        res.status(200).json({
             status:"failure",
             error:err.message
         })

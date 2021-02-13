@@ -62,13 +62,12 @@ exports.signup=async(req,res)=>{
     catch(err)
     {
         
-        res.status(400).json({
+        res.status(200).json({
             status:"failure",
             error:err.message
         })
     }
 }
-
 
 
 
@@ -107,7 +106,7 @@ exports.login=async (req,res)=>{
     }
     catch(err){
         
-        res.status(400).json({
+        res.status(200).json({
             status:"failure",
             error:err.message
         })
@@ -153,7 +152,7 @@ exports.addSection=async(req,res)=>{
     catch(err)
     {
         
-         res.status(400).json({
+         res.status(200).json({
             status:"failure",
             error:err.message
         })
@@ -187,7 +186,7 @@ exports.getSections=async(req,res)=>{
     catch(err)
     {
         
-         res.status(400).json({
+         res.status(200).json({
             status:"failure",
             error:err.message
         })
@@ -211,12 +210,11 @@ exports.deleteSection=async(req,res)=>{
        })
         
         
-        
     }
     catch(err)
     {
      
-     res.status(400).json({
+     res.status(200).json({
             status:"failure",
             error:err.message
         })   
@@ -225,7 +223,6 @@ exports.deleteSection=async(req,res)=>{
 }
 
 exports.disActiveAccounts=async(req,res)=>{
-
 
 try{
     
@@ -309,13 +306,42 @@ exports.maketeacherActive=async(req,res)=>{
 
 catch(err)
 {
-    res.status(400).json({
+    res.status(200).json({
             status:"failure",
             error:err.message
         }) 
 }  
     
     
+    
+}
+
+exports.deleteTeacher=async(req,res)=>{
+    
+try{
+    
+    
+        const id=req.params.id;
+        
+        
+        await teacherModel.deleteOne({_id:id});
+        
+        res.status(201).json({
+           status:"success",
+           data:"deleted successfully"
+       })
+        
+    
+    
+}    
+    
+    catch(err)
+    {
+        res.status(200).json({
+            status:"failure",
+            error:err.message
+        }) 
+    }
     
 }
 

@@ -1,6 +1,8 @@
 
 const express=require("express");
 const app=express();
+const cors=require("cors");
+app.use(cors());
 const cookieParser = require('cookie-parser')
 require("./db.js")
 app.use(express.json());

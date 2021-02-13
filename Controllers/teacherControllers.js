@@ -79,7 +79,7 @@ exports.signup=async(req,res)=>{
     }
     catch(err)
     {
-        res.status(400).json({
+        res.status(200).json({
             status:"failure",
             error:err.message
         })
@@ -99,7 +99,7 @@ exports.login=async(req,res)=>{
         
         
         const teacher=await teacherModel.findOne({email:email,password:password});
-        console.log(teacher)
+        
         if(teacher && teacher.active==true)
         {
             
@@ -125,7 +125,7 @@ exports.login=async(req,res)=>{
     }
     catch(err)
     {
-         res.status(400).json({
+         res.status(200).json({
             status:"failure",
             error:err.message
         })
@@ -137,6 +137,30 @@ exports.login=async(req,res)=>{
     
 }
 
+
+exports.getSectionByTeacher=async(req,res)=>{
+    
+    
+    try{
+        const did=req.params.id;
+        
+        const allSections=await sectionModel.find({department:did});
+        
+        
+        res.status(201).json({
+           status:"success",
+           data:allSections
+           
+             })
+    }
+    catch(err)
+    {
+        res.status(200).json({
+            status:"failure",
+            error:err.message
+        })
+    }
+}
 
 exports.addNotes=async(req,res)=>{
     
