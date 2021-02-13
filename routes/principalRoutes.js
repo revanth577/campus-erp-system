@@ -30,8 +30,6 @@ router.get("/logout",(req,res)=>{
             error:err.message
         })
     }
-    
-    
 })
 
 router.route("/loggedIn").get(LoggedIn)

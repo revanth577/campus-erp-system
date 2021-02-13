@@ -12,7 +12,7 @@ exports.isProtect=async (req,res,next)=>{
     try{
         console.log("protected")
         
-        const token=req.cookies.token;
+        const token=req.headers.token;
         const id=jwt.verify(token,SECRET_KEY);
         
         if(id)
@@ -50,7 +50,7 @@ exports.isPrincipal=async(req,res,next)=>{
         
         
         const isPrincipal=await principalModel.findById(id);
-        if(isPrincipal)
+        if(isPrincipal && isPrincipal.role=="principal")
         {
             req.principal=isPrincipal;
             next();
@@ -82,7 +82,7 @@ exports.isHod=async(req,res,next)=>{
         
         
          const hodFound=await hodModel.findById(id);
-        if(hodFound)
+        if(hodFound&&hodFound.role=="hod")
         {
             req.hod=hodFound;
             
@@ -112,7 +112,7 @@ exports.isTeacher=async(req,res,next)=>{
         
         
          const teacherFound=await teacherModel.findById(id);
-        if(teacherFound)
+        if(teacherFound&& teacherFound.role=="teacher")
         {
             req.teacher=teacherFound;
             

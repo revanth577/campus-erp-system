@@ -8,7 +8,7 @@ const notesModel=require("../models/notesModel.js")
 const subjectModel=require("../models/subjectModel.js")
 const meetingModel=require("../models/meetingsModel.js")
 const studentModel=require("../models/studentModel.js")
-const date = require('date-and-time');
+
 
 const {SECRET_KEY}=require("../secrets.js")
 
@@ -61,7 +61,7 @@ exports.signup=async(req,res)=>{
                 
                 res.status(201).json({
            status:"success",
-           data:teacher
+           data:"Please login"
            
              })
             }
@@ -105,11 +105,13 @@ exports.login=async(req,res)=>{
             
             const token=jwt.sign({id:teacher._id},SECRET_KEY,{expiresIn:'2h'});
             
-            res.cookie("token",token);
+            // res.cookie("token",token);
             
               res.status(201).json({
            status:"success",
-           data:"login successfull Teacher"
+           token:token,
+           data:teacher
+           
            
              })
             

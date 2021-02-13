@@ -16,7 +16,8 @@ const teacherSchema=new mongoose.Schema({
     
     password:{
         type:String,
-        required:true
+        required:true,
+        select:false
     },
     collegeId: {
         type: mongoose.Schema.Types.ObjectId,

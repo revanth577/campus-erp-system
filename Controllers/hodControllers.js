@@ -89,11 +89,13 @@ exports.login=async (req,res)=>{
              const token=jwt.sign({id:hodFound._id},SECRET_KEY,{expiresIn:'1h'});
             // console.log(SECRET_KEY)
             
-            res.cookie("token",token,{httpOnly:true})
+            // res.cookie("token",token,{httpOnly:true})
             
              res.status(201).json({
            status:"success",
-           data:"hod Login Successfull"
+         
+           token:token,
+           data:hodFound
        })
         }
         else{
