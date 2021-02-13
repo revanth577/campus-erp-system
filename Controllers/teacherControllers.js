@@ -142,9 +142,12 @@ exports.getSectionByTeacher=async(req,res)=>{
     
     
     try{
+        console.log("get")
         const did=req.params.id;
+        const year=parseInt(req.params.year);
+        console.log(year)
         
-        const allSections=await sectionModel.find({department:did});
+        const allSections=await sectionModel.find({department:did,year:year});
         
         
         res.status(201).json({
@@ -318,7 +321,6 @@ exports.addSubject=async(req,res)=>{
         
         await subject.save();
         
-        
         res.status(201).json({
            status:"success",
            data:subject
@@ -328,7 +330,7 @@ exports.addSubject=async(req,res)=>{
     }
     catch(err)
     {
-         res.status(400).json({
+         res.status(200).json({
             status:"failure",
             error:err.message
         }) 
@@ -337,6 +339,30 @@ exports.addSubject=async(req,res)=>{
 }
 
 
+exports.getAllSubjectsYear=async(req,res)=>{
+    
+     try{
+        
+        const dId=req.teacher.department;
+        const year=req.params.year;
+        const all=await subjectModel.find({department:dId,year:year});
+        
+        res.status(200).json({
+           status:"success",
+           data:all
+           
+             })
+        
+    }catch(err)
+    {
+        res.status(200).json({
+            status:"failure",
+            error:err.message
+        }) 
+    }
+    
+    
+}
 exports.getAllSubjects=async(req,res)=>{
     
     try{
@@ -353,7 +379,7 @@ exports.getAllSubjects=async(req,res)=>{
         
     }catch(err)
     {
-        res.status(400).json({
+        res.status(200).json({
             status:"failure",
             error:err.message
         }) 
@@ -388,7 +414,7 @@ exports.deleteSubject=async(req,res)=>{
     }
     catch(err)
     {
-        res.status(400).json({
+        res.status(200).json({
             status:"failure",
             error:err.message
         }) 

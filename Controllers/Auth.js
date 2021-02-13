@@ -96,7 +96,7 @@ exports.isHod=async(req,res,next)=>{
     }
     catch(err)
     {
-        res.status(400).json({
+        res.status(200).json({
             status:"failure",
             error:err.message
         })
@@ -126,7 +126,7 @@ exports.isTeacher=async(req,res,next)=>{
     }
     catch(err)
     {
-        res.status(400).json({
+        res.status(200).json({
             status:"failure",
             error:err.message
         })
@@ -161,7 +161,7 @@ exports.isStudent=async(req,res,next)=>{
     }
     catch(err)
     {
-        res.status(400).json({
+        res.status(200).json({
             status:"failure",
             error:err.message
         })
