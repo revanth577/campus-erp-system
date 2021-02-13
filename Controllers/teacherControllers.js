@@ -447,7 +447,7 @@ exports.addMeeting=async(req,res)=>{
    
    catch(err)
    {
-       res.status(400).json({
+       res.status(200).json({
             status:"failure",
             error:err.message
         }) 
