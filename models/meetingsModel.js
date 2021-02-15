@@ -22,7 +22,7 @@ const meetingSchema=new mongoose.Schema({
     },
     date:{
         type:String,
-        default:moment().format("MMMM Do YYYY, h:mm:ss a")
+        default:moment().format("lll")
     },time:{
         type:String,
         required:true

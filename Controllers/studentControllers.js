@@ -182,7 +182,7 @@ exports.getMeetingLinks=async(req,res)=>{
         
         const secId=req.student.section;
         
-        const meetings=await meetingModel.find({section:secId})
+        const meetings=await meetingModel.find({section:secId}).populate("subject")
         
            res.status(200).json({
            status:"success",
