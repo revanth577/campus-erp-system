@@ -26,6 +26,10 @@ exports.signup=async(req,res)=>{
         {
             throw new Error("email already exists");
         }
+        if(data.password!==data.confirmPassword)
+        {
+            throw new Error("passwords are mismatch")
+        }
         const rollNoExists=await studentModel.findOne({rollno:data.rollno})
         if(rollNoExists)
         {
@@ -86,7 +90,7 @@ exports.signup=async(req,res)=>{
     }
     catch(err)
     {
-        res.status(400).json({
+        res.status(200).json({
             status:"failure",
             error:err.message
         })
@@ -108,7 +112,7 @@ exports.login=async(req,res)=>{
         
     
         const studentFound=await studentModel.findOne({rollno:rollno,password:password});
-        console.log(studentFound)
+      
         if(studentFound&&studentFound.active==true)
         {
             const token=jwt.sign({id:studentFound._id},SECRET_KEY,{expiresIn:'1h'});
@@ -118,12 +122,13 @@ exports.login=async(req,res)=>{
             
              res.status(201).json({
            status:"success",
-           data:"student Login Successfull"
+           data:studentFound,
+           token:token
        })
             
         }
         else{
-            throw new Error("No Student Found")
+            throw new Error("No Student Found or make active by Your department  teacher")
         }
         
         
@@ -131,7 +136,7 @@ exports.login=async(req,res)=>{
     catch(err)
     {
         
-        res.status(400).json({
+        res.status(200).json({
             status:"failure",
             error:err.message
         })

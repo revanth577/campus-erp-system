@@ -10,7 +10,7 @@ exports.isProtect=async (req,res,next)=>{
     
     
     try{
-        console.log("protected")
+        
         
         const token=req.headers.token;
         const id=jwt.verify(token,SECRET_KEY);
@@ -24,9 +24,7 @@ exports.isProtect=async (req,res,next)=>{
         else{
             throw new Error("Your Not Authenticated");
         }
-        
-        
-        
+ 
         
     }
     

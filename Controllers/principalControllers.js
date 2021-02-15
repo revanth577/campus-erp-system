@@ -162,7 +162,7 @@ exports.getAllHods=async(req,res)=>{
     
     catch(err)
     {
-        res.status(400).json({
+        res.status(200).json({
             status:"failure",
             error:err.message
         })
@@ -239,14 +239,11 @@ exports.deleteHod=async(req,res)=>{
     {
         
         
-        res.status(400).json({
+        res.status(200).json({
             status:"failure",
             error:err.message
         })
     }
-    
-    
-    
     
     
 }

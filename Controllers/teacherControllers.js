@@ -465,7 +465,7 @@ exports.getAllMeetingsByTeacher=async(req,res)=>{
         const tId=req.teacher._id;
         
         
-        const all=await meetingModel.find({teacher:tId});
+        const all=await meetingModel.find({teacher:tId}).populate("teacher").populate("subject");
         
          res.status(201).json({
            status:"success",
@@ -532,7 +532,7 @@ exports.disactiveStudents=async(req,res)=>{
     
     try{
         const dId=req.teacher.department;
-        const all=await studentModel.find({active:false,department:dId})
+        const all=await studentModel.find({active:false,department:dId}).populate("section")
          res.status(200).json({
            status:"success",
            data:all
@@ -543,7 +543,7 @@ exports.disactiveStudents=async(req,res)=>{
     
     catch(err)
     {
-        res.status(400).json({
+        res.status(200).json({
             status:"failure",
             error:err.message
         })   
@@ -565,7 +565,7 @@ exports.getAllStudentsByDepartment=async(req,res)=>{
         const dId=req.teacher.department;
         
         
-        const all=await studentModel.find({department:dId});
+        const all=await studentModel.find({department:dId}).populate("section");
          res.status(200).json({
            status:"success",
            data:all
@@ -577,7 +577,7 @@ exports.getAllStudentsByDepartment=async(req,res)=>{
     }
     catch(err)
     {
-        res.status(400).json({
+        res.status(200).json({
             status:"failure",
             error:err.message
         })   
